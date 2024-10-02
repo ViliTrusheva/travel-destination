@@ -27,9 +27,15 @@ header {
     color: var(--secondaryColor);
 }
 
+footer {
+    position: relative;
+    top: 100%;
+}
+
 
 /******************* Background *******************/
-body {
+html, body {
+    height: 100%;
     scroll-behavior: smooth;
     background: white;
 }
