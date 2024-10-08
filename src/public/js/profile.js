@@ -1,4 +1,5 @@
-import { fetchUserProfile } from '../api/auth.js';
+// import { fetchUserProfile } from '../api/auth.js';
+import { getLoggedInUser } from '../api/auth.js';
 
 const createBtn = document.getElementById('create-btn');
 const cancelBtn = document.getElementById('cancel-btn');
@@ -21,5 +22,12 @@ cancelBtn.addEventListener('click', () => {
 });
 
 window.addEventListener('load', async () => {
- await fetchUserProfile();
+//  await fetchUserProfile();
 })
+
+const user = getLoggedInUser();
+if (user) {
+  console.log('Logged in user:', user);
+} else {
+  console.log('No user is logged in');
+}
