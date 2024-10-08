@@ -18,8 +18,6 @@ By default, the server listens on **port 3000**.
 
 #### **POST**:
 - **Create Travel**: `POST http://localhost:3000/auth/travel`
-
-#### **Authentication**:
 - **Login**: `POST http://localhost:3000/auth/login`
 - **Register**: `POST http://localhost:3000/auth/register`
 
