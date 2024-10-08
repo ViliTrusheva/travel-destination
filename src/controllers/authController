@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Travel = require("../models/travelModel");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -64,7 +65,7 @@ const loginUser = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, jwtSecret, { expiresIn: '25s' });
+    const token = jwt.sign({ userId: user._id }, jwtSecret, { expiresIn: '1h' });
 
     res.json({
       message: 'Login successful',
@@ -111,5 +112,92 @@ const updatePassword = async (req, res) => {
     res.status(500).json({ message: "Server error." });
   }
 };
+const createTravel = async (req, res) => {
+  const { title, description, dateFrom, dateTo, location, image } = req.body;
 
-module.exports = { registerUser, loginUser, updatePassword };
+  // Validate that required fields are provided
+  if (!title || !dateFrom || !dateTo || !location.country) {
+    return res.status(400).json({ message: "Please provide all required fields." });
+  }
+
+  try {
+    const newTravel = new Travel({
+      title,
+      description,
+      dateFrom,
+      dateTo,
+      location,
+      image,
+      user: req.user, //from authMiddleware
+    });
+
+    const savedTravel = await newTravel.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Travel created successfully!",
+      data: savedTravel,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: "Server error, unable to create travel." });
+  }
+};
+
+const deleteTravel = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Check if the travel entry exists
+    const travel = await Travel.findById(id);
+    if (!travel) {
+      return res.status(404).json({ message: 'Travel entry not found.' });
+    }
+
+    //Check if the user is authorized to delete this travel
+    if (travel.user.toString() !== req.user) {
+      return res.status(403).json({ message: 'Unauthorized to delete this travel entry.' });
+    }
+
+    await Travel.findByIdAndDelete(id);
+
+    res.status(200).json({ message: 'Travel entry deleted successfully.' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server error, unable to delete travel entry.' });
+  }
+};
+
+const updateTravel = async (req, res) => {
+  const { id } = req.params;
+  const updateFields = req.body;
+
+  try {
+    const travel = await Travel.findById(id);
+
+    if (!travel) {
+      return res.status(404).json({ message: 'Travel entry not found.' });
+    }
+
+    //Check if the user is authorized to delete this travel
+    if (travel.user.toString() !== req.user) {
+      return res.status(403).json({ message: 'Unauthorized to update this travel entry.' });
+    }
+
+    Object.keys(updateFields).forEach(field => {
+      travel[field] = updateFields[field];
+    });
+
+    const updatedTravel = await travel.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Travel entry updated successfully.',
+      data: updatedTravel,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server error, unable to update travel entry.' });
+  }
+};
+module.exports = { registerUser, loginUser, updatePassword, createTravel, deleteTravel, updateTravel };
