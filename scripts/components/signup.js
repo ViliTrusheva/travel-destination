@@ -1,3 +1,4 @@
+import { registerUser } from "../api/auth.js";
 
 // ******************* Signup Form Validation ******************* //
 
@@ -94,4 +95,18 @@ form.addEventListener("submit", (event) => {
 
   // If all conditions are met, alert the user that the form was submitted successfully
   alert("Form submitted successfully!");
+});
+
+
+// post request to the server to create a new user
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const newUser = document.getElementById("username").value;
+  const newEmail = document.getElementById("email").value;
+  const newPassword = document.getElementById("password").value;
+
+  registerUser(newUser, newEmail, newPassword);
+
 });

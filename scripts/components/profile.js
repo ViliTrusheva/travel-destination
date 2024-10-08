@@ -1,3 +1,5 @@
+import { fetchUserProfile } from '../api/auth.js';
+
 const createBtn = document.getElementById('create-btn');
 const cancelBtn = document.getElementById('cancel-btn');
 const modalElement = document.getElementById('create-modal');
@@ -17,3 +19,7 @@ cancelBtn.addEventListener('click', () => {
         modalElement.classList.add('hidden');
     }
 });
+
+window.addEventListener('load', async () => {
+ await fetchUserProfile();
+})
