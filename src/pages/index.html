@@ -6,7 +6,7 @@
         <!-- Stylesheet link -->
         <link rel="stylesheet" href="../public/styles/style.css" />
         <!-- Scripts -->
-        <!-- <script src="destinations.js" defer type="module"></script> -->
+        <script src="../public/js/createTravel.js" defer type="module"></script>
         <title>Travel Destination</title>
     </head>
 
@@ -20,7 +20,55 @@
         </div>
         </header>
 
-        <main></main>
+        <main>
+            <section>
+                <div class="container">
+                  <h1>You're creating a new travel post</h1>
+                  <!-- <p>Type in your login information</p> -->
+                  <!-- Form -->
+                  <form enctype="multipart/form-data" id="create-form" action="">
+                    <div class="form-group">
+                      <label for="title">What's the title of your travel?</label>
+                      <input id="title" type="text" name="title" placeholder="Title" />
+                    </div>
+                    <div class="form-group">
+                      <label for="country">What country did you travel to?</label>
+                      <input id="country" type="text" name="country" placeholder="Country" />
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Which city?</label>
+                        <input id="city" type="text" name="city" placeholder="City" />
+                      </div>
+                      <!-- <div class="form-group">
+                        <label for="location">What's the location of your travel?</label>
+                        <input id="location" type="text" name="location" placeholder="Location" />
+                      </div> -->
+                    <div class="date-group">
+                        <div class="form-group">
+                        <label for="date-from">Date from</label>
+                        <input id="date-from" type="date" name="date-from" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date-to">Date to</label>
+                        <input id="date-to" type="date" name="date-to" />
+                    </div>
+                      </div>
+                    <div class="form-group">
+                        <label for="description">Write a description of your travel</label>
+                        <textarea id="description" name="description" placeholder="Description"  id=""></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="image">Upload an image of your travel</label>
+                        <input id="image" type="file" id="image" name="image" accept="image/png, image/jpeg" />
+                      </div>
+                    <div class="modal-btn-group">
+                      <button class="btn-secondary" type="submit">Create new</button>
+                      <button id="cancel-btn" type="button" class="btn-tertiary">Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </section>
+        </main>
         <!-- Footer Section -->
         <footer>
             <p>&copy; 2024 Travel Destinations</p>
