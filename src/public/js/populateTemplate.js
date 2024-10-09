@@ -1,9 +1,11 @@
-import { formatDate, formatDateWithTime, reFormatDate } from "./dateUtils.js";
-import { showDeleteModal, showEditModal } from "./modalHandlers.js";
+import { formatDate, formatDateWithTime} from "./dateUtils.js";
+import { showDeleteModal } from "./deleteTravelHandler.js";
+import { showEditModal } from "./editTravelHandler.js";
 
+// Function to populate the travel template with data
 export function populateTemplate(travel, user) {
-  let temp = document.getElementById("travel-template");
-  let clone = temp.content.cloneNode(true);
+  const temp = document.getElementById("travel-template");
+  const clone = temp.content.cloneNode(true);
 
   clone.getElementById("title").textContent = travel.title;
   clone.getElementById("location").textContent = `${travel.location.city}, ${travel.location.country}`;
@@ -14,10 +16,12 @@ export function populateTemplate(travel, user) {
   clone.getElementById("username").textContent = user.nickname;
 
   const travelId = travel._id;
-  const token = localStorage.getItem("token");
 
+  // Check if user is logged in to show edit and delete buttons
+  const token = localStorage.getItem("token");
   if (token) {
     clone.getElementById("edit").textContent = "Edit";
+    // Event listeners for delete and edit modals
     clone.getElementById("delete").addEventListener("click", () => showDeleteModal(travelId));
     clone.getElementById("edit").addEventListener("click", () => showEditModal(travel));
   } else {
