@@ -26,6 +26,7 @@ form.addEventListener("submit", async (event) => {
       localStorage.setItem("token", data.token); // Store the token in local storage
       const username = data.user.nickname;
       localStorage.setItem("username", username);
+      window.location.href = "../pages/index.html"; // Redirect to home page
     } else if (data.message === "Invalid email or password.") {
       document.getElementById("password-error-message").textContent =
         "Invalid email or password, try again."; // Show password error message
