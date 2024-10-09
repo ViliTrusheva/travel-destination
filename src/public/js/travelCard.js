@@ -78,6 +78,7 @@ export function populateTemplate(travel, user) {
     });
     document.getElementById("confirm-edit").addEventListener("click", async () => {
         const editTitle = document.getElementById("edit-title").value;
+        console.log("title", editTitle.value);
         const editCountry = document.getElementById("edit-country").value;
         const editCity = document.getElementById("edit-city").value;
         const editDescription = document.getElementById("edit-description").value;
@@ -89,8 +90,6 @@ export function populateTemplate(travel, user) {
 
         try {
             await putTravel(travelId, editTravelObj);
-            editModal.classList.add("hidden");
-            editModal.classList.remove("visible");
           } catch (error) {
             console.error("Failed to update travel:", error);
           }
