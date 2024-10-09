@@ -6,6 +6,11 @@ const signupBtn = document.getElementById("signup");
 const loginBtn = document.getElementById("login");
 const logoutBtn = document.getElementById("logout");
 const usernameDisplay = document.getElementById("username-display");
+const editButton = document.querySelectorAll("#edit");
+const deleteButton = document.querySelectorAll("#delete");
+import { getTravels } from "../api/travelsApi.js";
+import { populateTemplate } from "./createTravel.js";
+import { getUser } from "../api/userApi.js";
 
 // Add event listener for the logout button
 logoutBtn.addEventListener("click", () => {
@@ -49,10 +54,8 @@ const isUserLoggedIn = () => {
 
 // Hide or show user buttons based on the user's login status
 const hideUserButtons = () => {
-  const editButtons = document.querySelectorAll("#edit");
-  const deleteButtons = document.querySelectorAll("#delete");
-  editButtons.forEach(button => button.classList.add("hidden"));
-  deleteButtons.forEach(button => button.classList.add("hidden"));
+  editButton.forEach(button => button.classList.add("hidden"));
+  deleteButton.forEach(button => button.classList.add("hidden"));
   createBtn.classList.add("hidden");
   logoutBtn.classList.add("hidden");
   signupBtn.classList.remove("hidden");
@@ -61,10 +64,8 @@ const hideUserButtons = () => {
 };
 
 const showUserButtons = (username) => {
-  const editButtons = document.querySelectorAll("#edit");
-  const deleteButtons = document.querySelectorAll("#delete");
-  editButtons.forEach(button => button.classList.remove("hidden"));
-  deleteButtons.forEach(button => button.classList.remove("hidden"));
+  editButton.forEach(button => button.classList.remove("hidden"));
+  deleteButton.forEach(button => button.classList.remove("hidden"));
   createBtn.classList.remove("hidden");
   logoutBtn.classList.remove("hidden");
   signupBtn.classList.add("hidden");
@@ -76,3 +77,30 @@ const showUserButtons = (username) => {
 window.addEventListener("load", () => {
   isUserLoggedIn();
 });
+
+
+
+// Add an event listener to handle loading the travels
+window.addEventListener("load", async () => {
+  try {
+    const travels = await getTravels();
+    const users = await getUser(); // Assuming getUser fetches all users
+
+    // Create a mapping of user IDs to user objects
+    const userMap = {};
+    users.forEach((user) => {
+      userMap[user._id] = user;
+    });
+
+    travels.forEach((travel) => {
+      const user = userMap[travel.user];
+      populateTemplate(travel, user);
+      console.log(travel.user);
+    });
+    console.log(users);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+});
+
+

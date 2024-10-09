@@ -1,8 +1,9 @@
 import { postTravel } from "../api/auth.js";
-import { getTravels } from "../api/travelsApi.js";
-import { getUser } from "../api/userApi.js";
+import { deleteTravel, getTravels } from "../api/travelsApi.js";
+// import { getUser } from "../api/userApi.js";
 import { formatDate, formatDateWithTime } from "./dateUtils.js";
 const form = document.getElementById("create-form");
+const deleteModal = document.getElementById("delete-modal");
 
 // Add an event listener to handle form submission
 form.addEventListener("submit", (event) => {
@@ -21,7 +22,7 @@ form.addEventListener("submit", (event) => {
     description: description,
     dateFrom: startDate,
     dateTo: endDate,
-    location: {country: country, city: city},
+    location: { country: country, city: city },
     image: image,
     createdAt: new Date(),
   };
@@ -31,31 +32,8 @@ form.addEventListener("submit", (event) => {
   populateTemplate(travelObj);
 });
 
-// Add an event listener to handle loading the travels
-window.addEventListener("load", async () => {
-  try {
-    const travels = await getTravels();
-    const users = await getUser(); // Assuming getUser fetches all users
-
-    // Create a mapping of user IDs to user objects
-    const userMap = {};
-    users.forEach((user) => {
-      userMap[user._id] = user;
-    });
-
-    travels.forEach((travel) => {
-      const user = userMap[travel.user];
-      populateTemplate(travel, user);
-      console.log(travel.user);
-    });
-    console.log(users);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-});
-
 // Helper function to populate the travel template
-function populateTemplate(travel, user) {
+export function populateTemplate(travel, user) {
   let temp = document.getElementById("travel-template");
   let clone = temp.content.cloneNode(true);
 
@@ -70,12 +48,35 @@ function populateTemplate(travel, user) {
     "created"
   ).textContent = `Posted on: ${formatDateWithTime(travel.createdAt)}`;
   clone.getElementById("username").textContent = user.nickname;
+  const travelId = travel._id;
 
-  // Check if the user is logged in
+  // Check if the user is logged in to display the edit and delete buttons
   const token = localStorage.getItem("token");
   if (token) {
     clone.getElementById("edit").textContent = "Edit";
-    clone.getElementById("delete");
+    clone.getElementById("delete").addEventListener("click", () => {
+      deleteModal.classList.remove("hidden");
+      deleteModal.classList.add("visible");
+
+      // Add an event listener to handle the cancel button
+      document.getElementById("cancel-delete").addEventListener("click", () => {
+        deleteModal.classList.add("hidden");
+        deleteModal.classList.remove("visible");
+      });
+
+      // Add an event listener to handle the confirm button
+      document.getElementById("confirm-delete").addEventListener("click", async () => {
+        console.log("Confirm button clicked", travelId);
+        try {
+          await deleteTravel(travelId);
+          console.log("Travel deleted successfully");
+          deleteModal.classList.add("hidden");
+          deleteModal.classList.remove("visible");
+        } catch (error) {
+          console.error("Failed to delete travel:", error);
+        }
+      });
+    });
   } else {
     clone.getElementById("edit").classList.add("hidden");
     clone.getElementById("delete").classList.add("hidden");
@@ -83,3 +84,4 @@ function populateTemplate(travel, user) {
 
   document.getElementById("output").appendChild(clone);
 }
+

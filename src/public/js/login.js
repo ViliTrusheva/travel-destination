@@ -26,14 +26,11 @@ form.addEventListener("submit", async (event) => {
       localStorage.setItem("token", data.token); // Store the token in local storage
       const username = data.user.nickname;
       localStorage.setItem("username", username);
-    } else if (data.message === "Invalid password.") {
+    } else if (data.message === "Invalid email or password.") {
       document.getElementById("password-error-message").textContent =
-        "Invalid password, try again."; // Show password error message
-      document.getElementById("password").classList.add("input-error"); // Add error class to password input
-    } else if (data.message === "Invalid email") {
-      document.getElementById("email-error-message").textContent =
-        "Invalid email, try again."; // Show email error message
-      document.getElementById("email").classList.add("input-error"); // Add error class to email input
+        "Invalid email or password, try again."; // Show password error message
+      document.getElementById("password").classList.add("input-error");
+      document.getElementById("email").classList.add("input-error");
     } else {
       throw new Error(data.message); // Throw an error for any other messages
     }

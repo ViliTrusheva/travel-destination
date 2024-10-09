@@ -58,6 +58,7 @@ body {
   border-radius: 10rem;
   width: fit-content;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .btn-secondary {
@@ -72,6 +73,7 @@ body {
   -webkit-box-shadow: 2px 4px 4px 0px rgba(161, 161, 161, 0.55);
   -moz-box-shadow: 2px 4px 4px 0px rgba(161, 161, 161, 0.55);
   box-shadow: 2px 4px 4px 0px rgba(161, 161, 161, 0.55);
+  cursor: pointer;
 }
 
 .btn-tertiary {
@@ -85,11 +87,13 @@ body {
   -webkit-box-shadow: 2px 4px 4px 0px rgba(161, 161, 161, 0.55);
   -moz-box-shadow: 2px 4px 4px 0px rgba(161, 161, 161, 0.55);
   box-shadow: 2px 4px 4px 0px rgba(161, 161, 161, 0.55);
+  cursor: pointer;
 }
 
 .btn-x {
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .btn-x div {
@@ -305,4 +309,23 @@ form {
   display: flex;
   justify-content: center;
 }
+
+#delete-modal{
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+}
+
+#delete-modal, section, .container {
+align-items: center;
+}
+
+#delete-modal, section, .container, .btn-group {
+  gap: 1rem;
+  }
+
+
 
