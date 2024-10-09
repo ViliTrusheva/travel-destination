@@ -19,11 +19,13 @@ form.addEventListener("submit", async (event) => {
   try {
     const response = await loginUser(email, password); // Send login request
     const data = await response.json(); // Parse the JSON response
+    console.log(data);
 
     if (response.ok) {
       alert("User logged in successfully!"); // Show success message if login is successful
-      console.log(data.token); // Log the response
       localStorage.setItem("token", data.token); // Store the token in local storage
+      const username = data.user.nickname;
+      localStorage.setItem("username", username);
     } else if (data.message === "Invalid password.") {
       document.getElementById("password-error-message").textContent =
         "Invalid password, try again."; // Show password error message
