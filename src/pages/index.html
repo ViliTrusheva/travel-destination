@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../public/styles/style.css" />
         <!-- Scripts -->
         <script src="../public/js/createTravel.js" defer type="module"></script>
+        <script src="../public/js/index.js" defer type="module"></script>
         <title>Travel Destination</title>
     </head>
 
@@ -21,6 +22,9 @@
         </header>
 
         <main>
+            <div>
+            <button id="create-btn" type="button" class="btn-secondary hidden">Create new</button>
+            <div id="create-modal" class="modal hidden">
             <section>
                 <div class="container">
                   <h1>You're creating a new travel post</h1>
@@ -68,6 +72,33 @@
                   </form>
                 </div>
               </section>
+            </div>
+              <template id="travel-template">
+                <div class="travel-card">
+                <img src="../public/denali.jpg" alt="">
+                <div class="travel-item">
+                    <div id="button-group" class="button-group">
+                    <button id="edit" class="btn-tertiary"></button>
+                    <button id="delete" class="btn-x">
+                        <div></div>
+                        <div></div>
+                    </button>
+                </div>
+                <h2 class="text" id="title"></h2>
+                <h3 id="location"></h3>
+                <div class="date-group">
+                <p id="date-from"></p>
+                <p id="date-to"></p>
+            </div>
+            <p id="description"></p>
+            </div>
+            </div>
+            <div id="created"></div>
+              </template>
+              <div id="output">
+              </div>
+            </div>
+            </div>
         </main>
         <!-- Footer Section -->
         <footer>

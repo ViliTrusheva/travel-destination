@@ -43,13 +43,7 @@ export const registerUser = async (newUser, newEmail, newPassword) => {
 };
 
 export const postTravel = async (
-  title,
-  city,
-  country,
-  description,
-  startDate,
-  endDate,
-  imageFile
+travelObj
 ) => {
   const token = localStorage.getItem("token");
   console.log("token", token);
@@ -60,14 +54,9 @@ export const postTravel = async (
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        title: title,
-        location: { country: country, city: city },
-        description: description,
-        dateFrom: startDate,
-        dateTo: endDate,
-        image: imageFile,
-      }),
+      body: JSON.stringify(
+travelObj
+      ),
     });
 
     return response;

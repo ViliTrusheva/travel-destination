@@ -4,7 +4,7 @@
   --tertiaryColor: #111313;
   --buttonColor: #7a96b6;
   --whiteOverlay: rgba(255, 255, 255, 0.3);
-  --error: #FF6060;
+  --error: #ff6060;
 }
 
 * {
@@ -29,9 +29,9 @@ header {
 }
 
 footer {
-    margin-top: 3rem;
-    display: flex;
-    justify-content: center;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 /******************* Background *******************/
@@ -78,40 +78,61 @@ body {
   box-shadow: 2px 4px 4px 0px rgba(161, 161, 161, 0.55);
 }
 
+.btn-x {
+  border: none;
+}
+
+.btn-x div {
+  background-color: #111313;
+  width: 1.5rem;
+  height: 2px;
+  border-radius: 2rem;
+}
+
+.btn-x div:nth-child(1) {
+  transform: rotate(45deg);
+  position: relative;
+  top: 2px;
+}
+
+.btn-x div:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
 /******************* Input field styling *******************/
 
-input, textarea {
+input,
+textarea {
   padding: 1rem 1.2rem;
   border: var(--primaryColor) 1px solid;
   background-color: var(--whiteOverlay);
   border-radius: 0.3rem;
 }
 
-input[type=file] {
-    padding: 1rem 1.2rem;
-    border: var(--primaryColor) 1px dashed;
-    background-color: var(--whiteOverlay);
-    border-radius: 0.3rem;
-  }
+input[type="file"] {
+  padding: 1rem 1.2rem;
+  border: var(--primaryColor) 1px dashed;
+  background-color: var(--whiteOverlay);
+  border-radius: 0.3rem;
+}
 
-  input::file-selector-button{
-    background-color: var(--whiteOverlay);
-    border: var(--primaryColor) 1px solid;
-    border-radius: 0.3rem;
-    padding: 0.2rem 0.5rem;
-    margin-right: 1rem;
-  }
-  
+input::file-selector-button {
+  background-color: var(--whiteOverlay);
+  border: var(--primaryColor) 1px solid;
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  margin-right: 1rem;
+}
 
-.input-error{
-    border-color: var(--error);
+.input-error {
+  border-color: var(--error);
 }
 
 .error-message {
-    color: var(--error);
-    font-size: 0.875em;
-    margin-top: 0.25em;
-  }
+  color: var(--error);
+  font-size: 0.875em;
+  margin-top: 0.25em;
+}
 
 /* input::placeholder textarea::placeholder {
   color: var(--primaryColor);
@@ -181,24 +202,62 @@ form {
   display: flex;
 }
 
-.modal{
-    height: fit-content;
-    width: 100vw;
-    background-color: var(--whiteOverlay);
-    position: absolute;
-    top: 0;
-    justify-content: center;
-    align-items: center;
+.modal {
+  height: fit-content;
+  width: 100vw;
+  background-color: var(--whiteOverlay);
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
 }
 
-.date-group{
-    width: 80%;
-    display: flex;
-    gap: 1rem;
+.date-group {
+  width: 80%;
+  display: flex;
+  gap: 1rem;
 }
 
-.modal-btn-group{
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+.modal-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/******************* Template styling *******************/
+
+.travel-card {
+  background-color: var(--secondaryColor);
+  width: 100%;
+  height: fit-content;
+  border-radius: 1rem;
+  /* margin-bottom: 2rem; */
+  display: flex;
+}
+
+.travel-card img {
+  width: 400px;
+  height: 300px;
+  border-radius: 1rem;
+}
+
+.travel-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+#created {
+  color: var(--primaryColor);
+  margin: 0.5rem 0 3rem 0;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: end;
 }
