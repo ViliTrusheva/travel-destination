@@ -1,18 +1,14 @@
 import { registerUser } from "../api/auth.js";
 import { loginUser } from "../api/auth.js";
+import { showError, clearErrors } from "./errorHandling.js";
+
+// Clear previous error messages
+clearErrors("email");
+clearErrors("password");
 
 // ******************* Signup Form Validation ******************* //
 
 const form = document.getElementById("signup-form");
-
-// Constants for error messages
-const ERROR_MESSAGES = {
-  invalidEmail: "Invalid email address",
-  usernameTooShort: "Username must be at least 4 characters long",
-  usernameTooLong: "Username must be under 30 characters long",
-  passwordTooShort: "Password must be at least 8 characters long",
-  passwordsDoNotMatch: "Passwords do not match",
-};
 
 // Helper function to validate email
 const validateEmail = (email) => {
@@ -44,27 +40,18 @@ form.addEventListener("submit", async (event) => {
 
   let hasError = false;
 
-  const showError = (elementId, message) => {
-    const errorElement = document.getElementById(`${elementId}-error-message`); 
-    const inputElement = document.getElementById(elementId);
-    // Set the error message
-    errorElement.textContent = message;
-    // Add error class to the input element
-    inputElement.classList.add("input-error");
-  };
-
   // Validate email
   if (!validateEmail(newEmail)) {
-    showError("email", ERROR_MESSAGES.invalidEmail);
+    showError("email", "Invalid email address");
     hasError = true;
   }
 
   // Validate username
   if (!validateUsername(newUser)) {
     if (newUser.length < 4) {
-      showError("username", ERROR_MESSAGES.usernameTooShort);
+      showError("username", "Username must be at least 4 characters long");
     } else {
-      showError("username", ERROR_MESSAGES.usernameTooLong);
+      showError("username", "Username must be under 30 characters long");
     }
     hasError = true;
   }
@@ -72,9 +59,9 @@ form.addEventListener("submit", async (event) => {
   // Validate passwords
   if (!validatePasswords(newPassword, newRepeatedPassword)) {
     if (newPassword.length < 8) {
-      showError("password", ERROR_MESSAGES.passwordTooShort);
+      showError("password", "Password must be at least 8 characters long");
     } else {
-      showError("repeated-password", ERROR_MESSAGES.passwordsDoNotMatch);
+      showError("repeated-password", "Passwords do not match");
     }
     hasError = true;
   }

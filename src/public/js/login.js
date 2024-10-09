@@ -1,6 +1,10 @@
 import { loginUser } from "../api/auth.js";
+import { showError, clearErrors } from "./errorHandling.js";
 
 const form = document.getElementById("login-form");
+// Clear previous error messages
+clearErrors("email");
+clearErrors("password");
 
 // Add an event listener to handle form submission
 form.addEventListener("submit", async (event) => {
@@ -9,12 +13,6 @@ form.addEventListener("submit", async (event) => {
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-
-  // Reset error messages and classes
-  document.getElementById("email-error-message").textContent = "";
-  document.getElementById("email").classList.remove("input-error");
-  document.getElementById("password-error-message").textContent = "";
-  document.getElementById("password").classList.remove("input-error");
 
   try {
     const response = await loginUser(email, password); // Send login request
@@ -28,10 +26,8 @@ form.addEventListener("submit", async (event) => {
       localStorage.setItem("username", username);
       window.location.href = "../pages/index.html"; // Redirect to home page
     } else if (data.message === "Invalid email or password.") {
-      document.getElementById("password-error-message").textContent =
-        "Invalid email or password, try again."; // Show password error message
-      document.getElementById("password").classList.add("input-error");
-      document.getElementById("email").classList.add("input-error");
+      showError("password", "Invalid email or password, try again.");
+      showError("email", "");
     } else {
       throw new Error(data.message); // Throw an error for any other messages
     }
