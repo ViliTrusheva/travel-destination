@@ -1,4 +1,5 @@
 import { registerUser } from "../api/auth.js";
+import { loginUser } from "../api/auth.js";
 
 // ******************* Signup Form Validation ******************* //
 
@@ -32,6 +33,8 @@ const validatePasswords = (password, repeatedPassword) => {
 // Event listener for the form to handle submit
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+  localStorage.removeItem("token");
+  localStorage.removeItem("username");
 
   const newPassword = document.getElementById("password").value;
   const newRepeatedPassword =
@@ -86,7 +89,12 @@ form.addEventListener("submit", async (event) => {
     const response = await registerUser(newUser, newEmail, newPassword);
     const data = await response.json();
     if (response.ok) {
-      alert("Form submitted successfully!");
+      alert("Welcome to Travel Destinations!");
+      const loginResponse = await loginUser(newEmail, newPassword);
+      const data = await loginResponse.json();
+      localStorage.setItem("username", newUser);
+      localStorage.setItem("token", data.token);
+      window.location.href = "../pages/index.html"; // Redirect to home page
     } else {
       //if the user already exists, display an alert
       if (data.message === "User already exists.") {
