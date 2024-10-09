@@ -165,7 +165,7 @@ main {
   justify-content: center;
 }
 
-section {
+.modal-section {
   background-color: var(--secondaryColor);
   width: 60%;
   margin: 3rem 0;
@@ -221,6 +221,7 @@ form {
   width: 100vw;
   background-color: var(--whiteOverlay);
   position: absolute;
+  z-index: 100;
   top: 0;
   left: 0;
   justify-content: center;
@@ -261,7 +262,7 @@ form {
 .travel-card img {
   width: 400px;
   height: 100%;
-  border-radius: 1rem;
+  border-radius: 0.3rem;
 }
 
 .travel-item {
