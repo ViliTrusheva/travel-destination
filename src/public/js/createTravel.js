@@ -1,5 +1,6 @@
 import { postTravel } from "../api/auth.js";
 import { getTravels } from "../api/travelsApi.js";
+import { getUser } from "../api/userApi.js";
 import { formatDate, formatDateWithTime } from "./dateUtils.js";
 const form = document.getElementById("create-form");
 
@@ -25,7 +26,6 @@ form.addEventListener("submit", (event) => {
     createdAt: new Date(),
   };
   postTravel(travelObj);
-//   getTravels();
   document.getElementById("create-modal").classList.add("hidden");
   document.getElementById("create-modal").classList.remove("visible");
   populateTemplate(travelObj);
@@ -35,17 +35,27 @@ form.addEventListener("submit", (event) => {
 window.addEventListener("load", async () => {
   try {
     const travels = await getTravels();
+    const users = await getUser(); // Assuming getUser fetches all users
+
+    // Create a mapping of user IDs to user objects
+    const userMap = {};
+    users.forEach((user) => {
+      userMap[user._id] = user;
+    });
 
     travels.forEach((travel) => {
-      populateTemplate(travel);
+      const user = userMap[travel.user];
+      populateTemplate(travel, user);
+      console.log(travel.user);
     });
+    console.log(users);
   } catch (error) {
     console.error("Error:", error);
   }
 });
 
 // Helper function to populate the travel template
-function populateTemplate(travel) {
+function populateTemplate(travel, user) {
   let temp = document.getElementById("travel-template");
   let clone = temp.content.cloneNode(true);
 
@@ -59,6 +69,7 @@ function populateTemplate(travel) {
   clone.getElementById(
     "created"
   ).textContent = `Posted on: ${formatDateWithTime(travel.createdAt)}`;
+  clone.getElementById("username").textContent = user.nickname;
 
   // Check if the user is logged in
   const token = localStorage.getItem("token");

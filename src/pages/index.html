@@ -18,8 +18,9 @@
             <h2>Travel destinations</h2>
             </a>
             <div>
-            <a id="signup" class="btn-primary" href="signup.html">Signup</a>
-            <a id="login" class="btn-primary" href="login.html">Login</a>
+            <a id="signup" class="btn-primary hidden" href="signup.html">Signup</a>
+            <a id="login" class="btn-primary hidden" href="login.html">Login</a>
+            <button id="logout" class="btn-primary hidden">Logout</button>
         </div>
         </header>
 
@@ -87,6 +88,7 @@
                 <div class="travel-card">
                 <img src="../public/denali.jpg" alt="">
                 <div class="travel-item">
+                  <p class="user">Posted by <span id="username"></span></p>
                     <div id="button-group" class="button-group">
                     <button id="edit" class="btn-tertiary"></button>
                     <button id="delete" class="btn-x">

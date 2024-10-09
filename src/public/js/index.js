@@ -1,8 +1,14 @@
-// import { del } from "express/lib/application";
-
 const createBtn = document.getElementById("create-btn");
 const cancelBtn = document.getElementById("cancel-btn");
 const modalElement = document.getElementById("create-modal");
+const signupBtn = document.getElementById("signup");
+const loginBtn = document.getElementById("login");
+const logoutBtn = document.getElementById("logout");
+
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  isUserLoggedIn();
+});
 
 createBtn.addEventListener("click", () => {
   if (modalElement) {
@@ -26,16 +32,16 @@ const isUserLoggedIn = () => {
   const createTravelBtn = document.getElementById("create-btn");
   if (!token) {
     createTravelBtn.classList.add("hidden");
+    logoutBtn.classList.add("hidden");
+    signupBtn.classList.remove("hidden");
+    loginBtn.classList.remove("hidden");
   } else {
     createTravelBtn.classList.remove("hidden");
+    logoutBtn.classList.remove("hidden");
+    signupBtn.classList.add("hidden");
+    loginBtn.classList.add("hidden");
   }
 };
-
-// isUserLoggedIn();
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   isUserLoggedIn();
-// });
 
 window.addEventListener("load", () => {
   isUserLoggedIn();
