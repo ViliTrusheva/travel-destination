@@ -29,19 +29,36 @@ cancelBtn.addEventListener("click", () => {
 const isUserLoggedIn = () => {
   const token = localStorage.getItem("token");
   console.log("Token", token);
-  const createTravelBtn = document.getElementById("create-btn");
   if (!token) {
-    createTravelBtn.classList.add("hidden");
-    logoutBtn.classList.add("hidden");
-    signupBtn.classList.remove("hidden");
-    loginBtn.classList.remove("hidden");
+    hideUserButtons()
   } else {
-    createTravelBtn.classList.remove("hidden");
-    logoutBtn.classList.remove("hidden");
-    signupBtn.classList.add("hidden");
-    loginBtn.classList.add("hidden");
+    showUserButtons();
   }
 };
+
+const hideUserButtons = () => {
+  const editButtons = document.querySelectorAll("#edit");
+  const deleteButtons = document.querySelectorAll("#delete");
+  editButtons.forEach(button => button.classList.add("hidden"));
+  deleteButtons.forEach(button => button.classList.add("hidden"));
+  createBtn.classList.add("hidden");
+  logoutBtn.classList.add("hidden");
+  signupBtn.classList.remove("hidden");
+  loginBtn.classList.remove("hidden");
+};
+
+const showUserButtons = () => {
+  const editButtons = document.querySelectorAll("#edit");
+  const deleteButtons = document.querySelectorAll("#delete");
+  editButtons.forEach(button => button.classList.remove("hidden"));
+  deleteButtons.forEach(button => button.classList.remove("hidden"));
+  createBtn.classList.remove("hidden");
+  logoutBtn.classList.remove("hidden");
+  signupBtn.classList.add("hidden");
+  loginBtn.classList.add("hidden");
+};
+
+
 
 window.addEventListener("load", () => {
   isUserLoggedIn();
