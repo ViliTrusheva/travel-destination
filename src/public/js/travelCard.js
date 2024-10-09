@@ -1,6 +1,6 @@
 import { formatDate, formatDateWithTime, reFormatDate } from "./dateUtils.js";
 import { deleteTravel, putTravel } from "../api/travelsApi.js";
-import Travel from "../../entities/Travel.js";
+import Travel from "../entities/Travel.js";
 const deleteModal = document.getElementById("delete-modal");
 const editModal = document.getElementById("edit-modal");
 

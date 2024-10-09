@@ -1,6 +1,6 @@
 import { postTravel } from "../api/travelsApi.js";
 import { populateTemplate } from "./travelCard.js";
-import Travel from "../../entities/Travel.js";
+import Travel from "../entities/Travel.js";
 const form = document.getElementById("create-form");
 
 const username = localStorage.getItem("username");
