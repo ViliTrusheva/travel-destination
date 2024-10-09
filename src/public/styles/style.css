@@ -310,7 +310,7 @@ form {
   justify-content: center;
 }
 
-#delete-modal{
+#delete-modal {
   /* display: flex; */
   justify-content: center;
   align-items: center;
@@ -326,6 +326,11 @@ align-items: center;
 #delete-modal, section, .container, .btn-group {
   gap: 1rem;
   }
+
+/* #edit-modal {
+  position:absolute;
+  height: 100%;
+} */
 
 
 

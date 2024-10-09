@@ -46,7 +46,7 @@ export const postTravel = async (
     const token = localStorage.getItem("token");
     console.log("token", token);
     try {
-      const response = await fetch("http://127.0.0.1:3000/auth/travel", {
+      const response = await fetch(`http://127.0.0.1:3000/auth/travel`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,6 +54,34 @@ export const postTravel = async (
         },
         body: JSON.stringify(
   travelObj
+        ),
+      });
+  
+      return response;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  };
+
+  // post travel with token
+export const putTravel = async (
+  travelId,
+  editTravelObj
+  ) => {
+    const token = localStorage.getItem("token");
+    const id = travelId;
+    console.log("id", id);
+    console.log("token", token);
+    try {
+      const response = await fetch(`http://127.0.0.1:3000/auth/travel/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(
+  editTravelObj
         ),
       });
   
