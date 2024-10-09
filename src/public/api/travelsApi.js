@@ -1,3 +1,4 @@
+// get all travels
 export const getTravels = async () => {
   try {
     const response = await fetch("http://127.0.0.1:3000/travels", {
@@ -15,6 +16,7 @@ export const getTravels = async () => {
   }
 };
 
+// delete travel by id with token
 export const deleteTravel = async (travelId) => {
   const id = travelId || "";
   const token = localStorage.getItem("token");
@@ -35,3 +37,29 @@ export const deleteTravel = async (travelId) => {
     throw error;
   }
 };
+
+
+// post travel with token
+export const postTravel = async (
+  travelObj
+  ) => {
+    const token = localStorage.getItem("token");
+    console.log("token", token);
+    try {
+      const response = await fetch("http://127.0.0.1:3000/auth/travel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(
+  travelObj
+        ),
+      });
+  
+      return response;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  };

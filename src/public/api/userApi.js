@@ -1,3 +1,4 @@
+// get user by id
 export const getUser = async (userId) => {
     const id = userId || "";
     try {

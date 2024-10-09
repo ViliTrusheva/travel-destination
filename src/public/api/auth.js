@@ -1,3 +1,4 @@
+// post to login user
 export const loginUser = async (email, password) => {
   try {
     const response = await fetch("http://127.0.0.1:3000/auth/login", {
@@ -21,6 +22,7 @@ export const loginUser = async (email, password) => {
   }
 };
 
+// post to register user
 export const registerUser = async (newUser, newEmail, newPassword) => {
   try {
     const response = await fetch("http://127.0.0.1:3000/auth/register", {
@@ -42,26 +44,3 @@ export const registerUser = async (newUser, newEmail, newPassword) => {
   }
 };
 
-export const postTravel = async (
-travelObj
-) => {
-  const token = localStorage.getItem("token");
-  console.log("token", token);
-  try {
-    const response = await fetch("http://127.0.0.1:3000/auth/travel", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(
-travelObj
-      ),
-    });
-
-    return response;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-};

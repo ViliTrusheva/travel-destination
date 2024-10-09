@@ -9,7 +9,7 @@ const usernameDisplay = document.getElementById("username-display");
 const editButton = document.querySelectorAll("#edit");
 const deleteButton = document.querySelectorAll("#delete");
 import { getTravels } from "../api/travelsApi.js";
-import { populateTemplate } from "./createTravel.js";
+import { populateTemplate } from "./travelCard.js";
 import { getUser } from "../api/userApi.js";
 
 // Add event listener for the logout button
@@ -42,7 +42,6 @@ cancelBtn.addEventListener("click", () => {
 const isUserLoggedIn = () => {
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
-  console.log("Token", token);
   if (!token) {
     // Hide the user buttons
     hideUserButtons()
@@ -95,9 +94,8 @@ window.addEventListener("load", async () => {
     travels.forEach((travel) => {
       const user = userMap[travel.user];
       populateTemplate(travel, user);
-      console.log(travel.user);
     });
-    console.log(users);
+    
   } catch (error) {
     console.error("Error:", error);
   }

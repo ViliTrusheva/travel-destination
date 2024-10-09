@@ -5,7 +5,7 @@ const Travel = require("../models/travelModel");
 //get
 router.get("/", async (req, res) => {
   try {
-    const travels = await Travel.find();
+    const travels = await Travel.find().sort({ createdAt: -1 });
     res.json(travels);
   } catch (err) {
     res.status(500).json({ message: "Server Error" });
