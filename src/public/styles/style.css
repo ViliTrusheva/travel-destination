@@ -39,6 +39,11 @@ footer {
   justify-content: center;
 }
 
+nav {
+  display: flex;
+  gap: 0.3rem;
+}
+
 /******************* Background *******************/
 html,
 body {
@@ -260,9 +265,9 @@ form {
 }
 
 .travel-card img {
-  width: 400px;
-  height: 100%;
+  width: 50%;
   border-radius: 0.3rem;
+  object-fit: cover;
 }
 
 .travel-item {
@@ -277,7 +282,6 @@ form {
   color: var(--primaryColor);
   margin: 0.5rem 0 3rem 0;
   width: 80%;
-
 }
 
 .button-group {
@@ -320,18 +324,43 @@ form {
   top: 0;
 }
 
-#delete-modal, section, .container {
-align-items: center;
+#delete-modal,
+section,
+.container {
+  align-items: center;
 }
 
-#delete-modal, section, .container, .btn-group {
+#delete-modal,
+section,
+.container,
+.btn-group {
   gap: 1rem;
+}
+
+/******************* small screen styling *******************/
+@media screen and (max-width: 768px) {
+  .travel-card {
+    flex-direction: column;
+    width: 80%;
   }
 
-/* #edit-modal {
-  position:absolute;
-  height: 100%;
-} */
+  .travel-card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.3rem;
+  }
 
+  .welcome-container {
+    flex-direction: column;
+  }
+  .modal-section {
+    width: 90%;
+  }
+  .modal-section h1 {
+    text-align: center;
+  }
 
-
+  .container {
+    width: 90%;
+  }
+}
