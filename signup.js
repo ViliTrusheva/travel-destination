@@ -1,6 +1,4 @@
-
 // ******************* Signup Form Validation ******************* //
-
 
 const form = document.getElementById("signup-form");
 
@@ -26,8 +24,7 @@ form.addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent form submission
 
   const newPassword = document.getElementById("password").value;
-  const newRepeatedPassword =
-    document.getElementById("repeated-password").value;
+  const newRepeatedPassword = document.getElementById("repeated-password").value;
   const newUser = document.getElementById("username").value;
   const newEmail = document.getElementById("email").value;
 
@@ -37,8 +34,7 @@ form.addEventListener("submit", (event) => {
   // Conditions for the form inputs
   const emailCondition = !emailRegex.test(newEmail);
   const usernameCondition = newUser.length < 4 || newUser.length > 30;
-  const passwordCondition =
-    newPassword.length < 8 || newPassword !== newRepeatedPassword;
+  const passwordCondition = newPassword.length < 8 || newPassword !== newRepeatedPassword;
 
   let hasError = false;
 
@@ -46,10 +42,7 @@ form.addEventListener("submit", (event) => {
   if (emailCondition) {
     const emailInput = document.getElementById("email");
     emailInput.classList.add("input-error");
-    displayErrorMessage(
-      emailInput,
-      "Invalid email, it must be a valid email address"
-    );
+    displayErrorMessage(emailInput, "Invalid email, it must be a valid email address");
     hasError = true;
   }
 
@@ -58,15 +51,10 @@ form.addEventListener("submit", (event) => {
     const usernameInput = document.getElementById("username");
     usernameInput.classList.add("input-error");
     if (newUser.length < 4) {
-      displayErrorMessage(
-        usernameInput,
-        "Username must be at least 4 characters long"
-      );
+      document.getElementById("usernameHelpMessage").classList.add("hidden");
+      displayErrorMessage(usernameInput, "Username must be at least 4 characters long");
     } else {
-      displayErrorMessage(
-        usernameInput,
-        "Username must be under 30 characters long"
-      );
+      displayErrorMessage(usernameInput, "Username must be under 30 characters long");
     }
     hasError = true;
   }
@@ -77,10 +65,8 @@ form.addEventListener("submit", (event) => {
     passwordInput.classList.add("input-error");
     repeatedPasswordInput.classList.add("input-error");
     if (newPassword.length < 8) {
-      displayErrorMessage(
-        passwordInput,
-        "Password must be at least 8 characters long"
-      );
+      document.getElementById("passwordHelpMessage").classList.add("hidden");
+      displayErrorMessage(passwordInput, "Password must be at least 8 characters long");
     } else {
       displayErrorMessage(repeatedPasswordInput, "Passwords do not match");
     }
