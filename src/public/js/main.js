@@ -9,9 +9,10 @@ const usernameDisplay = document.getElementById("username-display");
 const editButton = document.querySelectorAll("#edit");
 const deleteButton = document.querySelectorAll("#delete");
 import { getTravels } from "../api/travelsApi.js";
-import { populateTemplate } from "./populateTemplate.js";
 import { getUser } from "../api/userApi.js";
-// import { Travel } from "./entities/Travel.js";
+import { populateTemplate } from "./populateTemplate.js";
+import { showCreateModal, hideCreateModal } from "./createTravelHandler.js";
+import { createTravelHandler } from "./createTravelHandler.js";
 
 // Add event listener for the logout button
 logoutBtn.addEventListener("click", () => {
@@ -45,7 +46,7 @@ const isUserLoggedIn = () => {
   const username = localStorage.getItem("username");
   if (!token) {
     // Hide the user buttons
-    hideUserButtons()
+    hideUserButtons();
   } else {
     // Show the user buttons
     showUserButtons(username);
@@ -54,18 +55,18 @@ const isUserLoggedIn = () => {
 
 // Hide or show user buttons based on the user's login status
 const hideUserButtons = () => {
-  editButton.forEach(button => button.classList.add("hidden"));
-  deleteButton.forEach(button => button.classList.add("hidden"));
+  editButton.forEach((button) => button.classList.add("hidden"));
+  deleteButton.forEach((button) => button.classList.add("hidden"));
   createBtn.classList.add("hidden");
   logoutBtn.classList.add("hidden");
   signupBtn.classList.remove("hidden");
   loginBtn.classList.remove("hidden");
-  usernameDisplay.textContent = ""; 
+  usernameDisplay.textContent = "";
 };
 
 const showUserButtons = (username) => {
-  editButton.forEach(button => button.classList.remove("hidden"));
-  deleteButton.forEach(button => button.classList.remove("hidden"));
+  editButton.forEach((button) => button.classList.remove("hidden"));
+  deleteButton.forEach((button) => button.classList.remove("hidden"));
   createBtn.classList.remove("hidden");
   logoutBtn.classList.remove("hidden");
   signupBtn.classList.add("hidden");
@@ -78,14 +79,34 @@ window.addEventListener("load", () => {
   isUserLoggedIn();
 });
 
-
 // Example usage of the populateTemplate function
 async function loadTravels() {
   const travels = await getTravels();
-  const user = { nickname: "Traveler123" }; // Example user, could be fetched from your backend
-  travels.forEach(travel => populateTemplate(travel, user));
+  const users = await getUser();
+
+  // Mapping of user IDs to user objects
+  const userMap = {};
+  users.forEach((user) => {
+    userMap[user._id] = user;
+  });
+
+  travels.forEach((travel) => {
+    const user = userMap[travel.user];
+    populateTemplate(travel, user);
+  });
 }
 
 loadTravels();
 
+const user = localStorage.getItem("username");
 
+// Set up event listeners
+document
+  .getElementById("create-btn")
+  .addEventListener("click", () => showCreateModal());
+document
+  .getElementById("cancel-btn")
+  .addEventListener("click", () => hideCreateModal());
+document
+  .getElementById("confirm-create")
+  .addEventListener("click", () => createTravelHandler(user));
