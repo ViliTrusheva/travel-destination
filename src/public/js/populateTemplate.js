@@ -15,6 +15,14 @@ export function populateTemplate(travel, user) {
   clone.getElementById("created").textContent = `Posted on: ${formatDateWithTime(travel.createdAt)}`;
   clone.getElementById("username").textContent = user.nickname;
 
+  // Set the image source
+  const imageElement = clone.getElementById("travel-img");
+  if (travel.image) {
+    imageElement.src = `/uploads/${travel.image}`; // Use the actual image if it exists
+  } else {
+    imageElement.src = `/uploads/denali.jpg`; // Fallback to the default image
+  }
+  
   const travelId = travel._id;
 
   // Check if user is logged in to show edit and delete buttons

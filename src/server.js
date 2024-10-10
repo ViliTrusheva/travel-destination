@@ -7,6 +7,9 @@ const travelRoutes = require("./routes/travelRoutes");
 const path = require('path');
 
 const app = express();
+const uploadsPath = path.join(__dirname, 'public', 'uploads');
+console.log('Uploads directory path:', uploadsPath);
+app.use('/uploads', express.static(uploadsPath));
 app.use(cors());
 connectDB();
 

@@ -113,8 +113,16 @@ const updatePassword = async (req, res) => {
   }
 };
 const createTravel = async (req, res) => {
-  const { title, description, dateFrom, dateTo, location, image } = req.body;
-
+  const { title, description, dateFrom, dateTo, image } = req.body;
+  
+  const location = {
+    country: req.body['location.country'],
+    city: req.body['location.city'],
+    address: req.body['location.address']
+  };
+  console.log(location);
+  console.log(title,description,dateFrom,dateTo);
+  console.log(req.body);  // Log the entire body to inspect how data is received
   // Validate that required fields are provided
   if (!title || !dateFrom || !dateTo || !location.country) {
     return res.status(400).json({ message: "Please provide all required fields." });
@@ -127,7 +135,7 @@ const createTravel = async (req, res) => {
       dateFrom,
       dateTo,
       location,
-      image,
+      image: req.file?.filename,
       user: req.user, //from authMiddleware
     });
 
