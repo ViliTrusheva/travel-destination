@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Stylesheet link -->
+    <link rel="stylesheet" href="/styles/style.css" />
+    <!-- Scripts -->
+    <!-- <script src="/js/createTravel.js" defer type="module"></script> -->
+    <script src="/js/main.js" defer type="module"></script>
+    <title>Travel Destination</title>
+  </head>
+
+  <body>
+    <!-- Header Section -->
+    <header class="header-container">
+      <a href="/">
+        <h2>Travel destinations</h2>
+      </a>
+      <nav>
+        <a id="signup" class="btn-primary hidden" href="/signup">Signup</a>
+        <a id="login" class="btn-primary hidden" href="/login">Login</a>
+        <button id="logout" class="btn-primary hidden">Logout</button>
+      </nav>
+    </header>
+    <main>
+      <div>
+        <section class="welcome-section">
+          <div class="welcome-container">
+            <div>
+              <h1 id="username-display"></h1>
+              <h2>Explore your next adventure</h2>
+            </div>
+            <button id="create-btn" type="button" class="btn-secondary hidden">
+              Create new
+            </button>
+          </div>
+        </section>
+        <div id="create-modal" class="modal hidden">
+          <section class="modal-section">
+            <div class="container">
+              <h1>You're creating a new travel post</h1>
+
+              <!-- Create new travel form -->
+              <form id="create-form" action="">
+                <div class="form-group">
+                  <label for="title">What's the title of your travel?</label>
+                  <input
+                    id="title"
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                  />
+                  <div id="title-error-message" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                  <label for="country">What country did you travel to?</label>
+                  <input
+                    id="country"
+                    type="text"
+                    name="country"
+                    placeholder="Country"
+                  />
+                  <div id="country-error-message" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                  <label for="city">Which city?</label>
+                  <input id="city" type="text" name="city" placeholder="City" />
+                  <div id="city-error-message" class="error-message"></div>
+                </div>
+                <div class="date-group">
+                  <div class="form-group">
+                    <label for="date-from">Date from</label>
+                    <input id="date-from" type="date" name="date-from" />
+                    <div
+                      id="date-from-error-message"
+                      class="error-message"
+                    ></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="date-to">Date to</label>
+                    <input id="date-to" type="date" name="date-to" />
+                    <div id="date-to-error-message" class="error-message"></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="description"
+                    >Write a description of your travel</label
+                  >
+                  <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Description"
+                    id=""
+                  ></textarea>
+                  <div
+                    id="description-error-message"
+                    class="error-message"
+                  ></div>
+                </div>
+                <div class="form-group">
+                  <label for="image">Upload an image of your travel</label>
+                  <input
+                    id="image"
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/png, image/jpeg"
+                  />
+                </div>
+                <div class="modal-btn-group">
+                  <button
+                    id="confirm-create"
+                    class="btn-secondary"
+                    type="submit"
+                  >
+                    Create new
+                  </button>
+                  <button id="cancel-btn" type="button" class="btn-tertiary">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+
+        <!-- Modal to delete post -->
+        <div id="delete-modal" class="modal hidden">
+          <section class="modal-section">
+            <div class="container">
+              <h1>You're about to delete this travel post!</h1>
+              <p>Are you sure?</p>
+              <div class="btn-group">
+                <button class="btn-secondary" id="confirm-delete" type="button">
+                  Delete
+                </button>
+                <button class="btn-tertiary" id="cancel-delete" type="button">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- Modal to edit a post -->
+        <div id="edit-modal" class="modal hidden">
+          <section class="modal-section">
+            <div class="container">
+              <h1>You're editing this travel post</h1>
+              <!-- Edit post form -->
+              <form id="create-form" action="">
+                <div class="form-group">
+                  <label for="title">What's the title of your travel?</label>
+                  <input
+                    id="edit-title"
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="country">What country did you travel to?</label>
+                  <input
+                    id="edit-country"
+                    type="text"
+                    name="country"
+                    placeholder="Country"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="city">Which city?</label>
+                  <input
+                    id="edit-city"
+                    type="text"
+                    name="city"
+                    placeholder="City"
+                  />
+                </div>
+                <div class="date-group">
+                  <div class="form-group">
+                    <label for="date-from">Date from</label>
+                    <input id="edit-date-from" type="date" name="date-from" />
+                  </div>
+                  <div class="form-group">
+                    <label for="date-to">Date to</label>
+                    <input id="edit-date-to" type="date" name="date-to" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="description"
+                    >Write a description of your travel</label
+                  >
+                  <textarea
+                    id="edit-description"
+                    name="description"
+                    placeholder="Description"
+                    id=""
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="image">Upload an image of your travel</label>
+                  <input
+                    id="image"
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/png, image/jpeg"
+                  />
+                </div>
+                <div class="modal-btn-group">
+                  <button id="confirm-edit" class="btn-secondary" type="submit">
+                    Update
+                  </button>
+                  <button id="cancel-edit" type="button" class="btn-tertiary">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+        <!-- Template to populate with travels -->
+        <template id="travel-template">
+          <div class="travel-card">
+            <img src="../denali.jpg" alt="" />
+            <div class="travel-item">
+              <p class="user">Posted by <span id="username"></span></p>
+              <div id="button-group" class="button-group">
+                <button id="edit" class="btn-tertiary"></button>
+                <button id="delete" class="btn-x">
+                  <div></div>
+                  <div></div>
+                </button>
+              </div>
+              <h2 class="text" id="title"></h2>
+              <h3 id="location"></h3>
+              <div class="date-group">
+                <p id="date-from"></p>
+                <p id="date-to"></p>
+              </div>
+              <p id="description"></p>
+            </div>
+          </div>
+          <div id="created"></div>
+        </template>
+        <div id="output"></div>
+      </div>
+    </main>
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; 2024 Travel Destinations</p>
+    </footer>
+  </body>
+</html>
