@@ -58,6 +58,7 @@ form.addEventListener("submit", (event) => {
     }
     hasError = true;
   }
+
   // Check password condition
   if (passwordCondition) {
     const passwordInput = document.getElementById("password");
