@@ -44,7 +44,6 @@ export const postTravel = async (
   travelObj
   ) => {
     const token = localStorage.getItem("token");
-    console.log("token", token);
     try {
       const response = await fetch(`http://127.0.0.1:3000/auth/travel`, {
         method: "POST",
@@ -71,8 +70,6 @@ export const putTravel = async (
   ) => {
     const token = localStorage.getItem("token");
     const id = travelId;
-    console.log("id", id);
-    console.log("token", token);
     try {
       const response = await fetch(`http://127.0.0.1:3000/auth/travel/${id}`, {
         method: "PUT",

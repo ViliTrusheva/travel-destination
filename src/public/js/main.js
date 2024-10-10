@@ -22,24 +22,6 @@ logoutBtn.addEventListener("click", () => {
   isUserLoggedIn();
 });
 
-// Add event listener for the create button
-createBtn.addEventListener("click", () => {
-  if (modalElement) {
-    // Show the modal
-    modalElement.classList.remove("hidden");
-    modalElement.classList.add("visible");
-  }
-});
-
-// Add event listener for the cancel button
-cancelBtn.addEventListener("click", () => {
-  if (modalElement) {
-    // Hide the modal
-    modalElement.classList.remove("visible");
-    modalElement.classList.add("hidden");
-  }
-});
-
 // Check if the user is logged in
 const isUserLoggedIn = () => {
   const token = localStorage.getItem("token");
@@ -79,7 +61,6 @@ window.addEventListener("load", () => {
   isUserLoggedIn();
 });
 
-// Example usage of the populateTemplate function
 async function loadTravels() {
   const travels = await getTravels();
   const users = await getUser();
