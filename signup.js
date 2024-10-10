@@ -82,3 +82,4 @@ form.addEventListener("submit", (event) => {
   // If all conditions are met, alert the user that the form was submitted successfully
   alert("Form submitted successfully!");
 });
+
