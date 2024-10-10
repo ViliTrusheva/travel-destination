@@ -56,7 +56,7 @@ export const postTravel = async (
         ),
       });
   
-      return response;
+      return response.json();
     } catch (error) {
       console.error("Error:", error);
       throw error;

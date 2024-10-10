@@ -1,3 +1,4 @@
+
 import { formatDate, formatDateWithTime} from "./dateUtils.js";
 import { showDeleteModal } from "./deleteTravelHandler.js";
 import { showEditModal } from "./editTravelHandler.js";
@@ -29,5 +30,11 @@ export function populateTemplate(travel, user) {
     clone.getElementById("delete").classList.add("hidden");
   }
 
-  document.getElementById("output").appendChild(clone);
+  const outputElement = document.getElementById("output");
+  // Insert the new travel item at the top of the list
+  if (outputElement.firstChild) {
+    outputElement.insertBefore(clone, outputElement.firstChild);
+  } else {
+    outputElement.appendChild(clone);
+  }
 }
