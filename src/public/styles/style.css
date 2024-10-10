@@ -354,6 +354,11 @@ section,
   .welcome-container {
     flex-direction: column;
   }
+
+  .welcome-container div {
+    width: 100%;
+  }
+
   .modal-section {
     width: 90%;
   }
