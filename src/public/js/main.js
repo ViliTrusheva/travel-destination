@@ -1,4 +1,4 @@
-// Get references from the DOM
+// Get references from the DOM  (Document Object Model)
 const createBtn = document.getElementById("create-btn");
 const signupBtn = document.getElementById("signup");
 const loginBtn = document.getElementById("login");
