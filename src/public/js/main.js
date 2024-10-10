@@ -1,7 +1,5 @@
 // Get references from the DOM
 const createBtn = document.getElementById("create-btn");
-const cancelBtn = document.getElementById("cancel-btn");
-const modalElement = document.getElementById("create-modal");
 const signupBtn = document.getElementById("signup");
 const loginBtn = document.getElementById("login");
 const logoutBtn = document.getElementById("logout");
