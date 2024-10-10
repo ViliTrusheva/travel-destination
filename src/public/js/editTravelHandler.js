@@ -14,32 +14,52 @@ export function showEditModal(travel) {
   document.getElementById("edit-country").value = travel.location.country;
   document.getElementById("edit-city").value = travel.location.city;
   document.getElementById("edit-description").value = travel.description;
-  document.getElementById("edit-date-from").value = reFormatDate(travel.dateFrom);
+  document.getElementById("edit-date-from").value = reFormatDate(
+    travel.dateFrom
+  );
   document.getElementById("edit-date-to").value = reFormatDate(travel.dateTo);
 
   // Handle cancel edit action
-  document.getElementById("cancel-edit").addEventListener("click", hideEditModal);
+  document
+    .getElementById("cancel-edit")
+    .addEventListener("click", hideEditModal);
 
   // Handle confirm edit action
-  document.getElementById("confirm-edit").addEventListener("click", async () => {
-    try {
-      const updatedTravel = new Travel(
-        document.getElementById("edit-title").value,
-        document.getElementById("edit-description").value,
-        document.getElementById("edit-date-from").value,
-        document.getElementById("edit-date-to").value,
-        document.getElementById("edit-country").value,
-        document.getElementById("edit-city").value,
-        "https://example.com/alps.jpg" // This could be dynamic if needed
-      );
+  document
+    .getElementById("confirm-edit")
+    .addEventListener("click", async () => {
+      const title = document.getElementById("edit-title").value;
+      const description = document.getElementById("edit-description").value;
+      const dateFrom = document.getElementById("edit-date-from").value;
+      const dateTo = document.getElementById("edit-date-to").value;
+      const country = document.getElementById("edit-country").value;
+      const city = document.getElementById("edit-city").value;
+      const image = "https://example.com/alps.jpg";
+      const user = travel.user;
+      const createdTime = travel.createdAt;
+    
+      try {
+        const updatedTravel = {
+          title: title,
+          description: description,
+          dateFrom: dateFrom,
+          dateTo: dateTo,
+          location: {
+            country: country,
+            city: city,
+          },
+          image: image,
+          user: user,
+          createdAt: createdTime,
+        };
 
-      await putTravel(travel._id, updatedTravel);
-      console.log("Travel updated successfully");
-      hideEditModal();
-    } catch (error) {
-      console.error("Failed to update travel:", error);
-    }
-  });
+        await putTravel(travel._id, updatedTravel);
+        console.log("Travel updated successfully");
+        hideEditModal();
+      } catch (error) {
+        console.error("Failed to update travel:", error);
+      }
+    });
 }
 
 // Hide the edit modal
