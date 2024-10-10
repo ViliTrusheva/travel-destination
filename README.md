@@ -2,8 +2,7 @@
 
 ## Figma Design
 
-You can view the Figma prototype <a href="[https://www.example.com](https://www.figma.com/design/CcbkZ3X8qdqRTn1q9cL8c9/Travel-Destination-Project?node-id=0-1&t=vSczKiC8VEynPsZE-1
-)" target="_blank">here</a>. 
+You can view the Figma prototype <a href="https://www.figma.com/design/CcbkZ3X8qdqRTn1q9cL8c9/Travel-Destination-Project?node-id=0-1&t=vSczKiC8VEynPsZE-1" target="_blank">here</a>. 
 
 ## API Routes for Testing in Postman
 
