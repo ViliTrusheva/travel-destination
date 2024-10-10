@@ -87,5 +87,5 @@ document
   .getElementById("cancel-btn")
   .addEventListener("click", () => hideCreateModal());
 document
-  .getElementById("confirm-create")
-  .addEventListener("click", () => createTravelHandler(user));
+  .getElementById("create-form")
+  .addEventListener("submit", (event) => createTravelHandler(event, user));
