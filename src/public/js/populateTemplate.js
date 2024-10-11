@@ -6,7 +6,6 @@ import { showEditModal } from "./editTravelHandler.js";
 // Function to populate the travel template with data
 export function populateTemplate(travel, user) {
   const travelId = travel._id;
-  console.log(travelId);
 
   const temp = document.getElementById("travel-template");
   const clone = temp.content.cloneNode(true);
