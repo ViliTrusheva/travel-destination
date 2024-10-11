@@ -5,8 +5,19 @@ import { showEditModal } from "./editTravelHandler.js";
 
 // Function to populate the travel template with data
 export function populateTemplate(travel, user) {
+  const travelId = travel._id;
+  console.log(travelId);
+
   const temp = document.getElementById("travel-template");
   const clone = temp.content.cloneNode(true);
+
+  const travelCard = clone.getElementById("travel-card");
+
+  if (travelCard) {
+    travelCard.setAttribute("id", "travel-" + travelId);
+  } else {
+    console.error("Element with ID 'travel-card' not found in the template.");
+  }
 
   clone.getElementById("title").textContent = travel.title;
   clone.getElementById("location").textContent = `${travel.location.city}, ${travel.location.country}`;
@@ -16,7 +27,6 @@ export function populateTemplate(travel, user) {
   clone.getElementById("created").textContent = `Posted on: ${formatDateWithTime(travel.createdAt)}`;
   clone.getElementById("username").textContent = user.nickname;
 
-  const travelId = travel._id;
 
   // Check if user is logged in to show edit and delete buttons
   const token = localStorage.getItem("token");
@@ -31,6 +41,7 @@ export function populateTemplate(travel, user) {
   }
 
   const outputElement = document.getElementById("output");
+
   // Insert the new travel item at the top of the list
   if (outputElement.firstChild) {
     outputElement.insertBefore(clone, outputElement.firstChild);

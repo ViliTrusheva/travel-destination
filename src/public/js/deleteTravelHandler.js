@@ -17,6 +17,11 @@ export function showDeleteModal(travelId) {
       await deleteTravel(travelId);
       console.log("Travel deleted successfully");
       hideDeleteModal();
+            // Remove the travel entry from the DOM
+            const travelElement = document.getElementById(`travel-${travelId}`);
+            if (travelElement) {
+              travelElement.remove();
+            }
     } catch (error) {
       console.error("Failed to delete travel:", error);
     }
