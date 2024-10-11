@@ -2,6 +2,7 @@
 import { postTravel } from "../api/travelsApi.js";
 import { showError, clearErrors } from "./errorHandling.js"; 
 import Travel from "../entities/Travel.js"; 
+import { populateTemplate } from "./populateTemplate.js";
 
 const createModal = document.getElementById("create-modal");
 
@@ -76,9 +77,10 @@ export async function createTravelHandler(event, user
   // Create the travel object
   const travelObj = new Travel(title, description, startDate, endDate, country, city, image, user.nickname);
   try {
-    await postTravel(travelObj);
+    const response = await postTravel(travelObj);
     console.log("Travel created successfully");
-    hideCreateModal(); // Close the modal
+    hideCreateModal(); // Close the modal'
+    populateTemplate(response.data, user);
   } catch (error) {
     console.error("Failed to create travel:", error);
 }

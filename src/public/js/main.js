@@ -16,6 +16,7 @@ import { createTravelHandler } from "./createTravelHandler.js";
 logoutBtn.addEventListener("click", () => {
   // Remove the token from local storage
   localStorage.removeItem("token");
+  localStorage.removeItem("username");
   // update the UI based on the user's login status
   isUserLoggedIn();
 });

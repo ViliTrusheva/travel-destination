@@ -1,3 +1,5 @@
+require("dotenv").config();
+console.log("MONGODB_URI:", process.env.MONGODB_URI); // Add this line to check if the variable is loaded
 const mongoose = require("mongoose");
 const connectDB = require("../config/db");
 const User = require("../models/userModel");
