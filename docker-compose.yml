@@ -1,0 +1,43 @@
+version: '3,9'
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./src/public
+      dockerfile: frontend.dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    mem_reservation: 512MB
+    mem_limit: 1024MB
+
+  backend:
+    container_name: backend
+    build:
+      context: ./src/backend
+      dockerfile: backend.dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      -  MONGO_URI=mongodb://mongo:27017/test
+    depends_on:
+      - mongo
+    mem_limit: 1536MB
+    mem_reservation: 1024MB
+
+  mongo:
+    image: mongo:latest
+    container_name: mongoDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    mem_reservation: 512MB
+    mem_limit: 1024MB
+
+volumes:
+  mongo-data:
+
+      

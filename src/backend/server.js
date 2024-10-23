@@ -10,16 +10,16 @@ const app = express();
 app.use(cors());
 connectDB();
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'pages', 'index.html'));
+  res.sendFile(path.join(__dirname, '../public/pages', 'index.html'));
 });
 app.get('/login', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'pages', 'login.html'));
+  res.sendFile(path.join(__dirname, '../public/pages', 'login.html'));
 });
 app.get('/signup', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'pages', 'signup.html'));
+  res.sendFile(path.join(__dirname, '../public/pages', 'signup.html'));
 });
 
 
