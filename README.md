@@ -67,7 +67,7 @@ docker-compose --version
 
 1. **Backend**: Create a dockerfile in the backend folder.
 2. **Frontend**: Create a dockerfile in the frontend folder.
-3. **Docker Compose**: Create a docker-compose.yml file in the root directory.
+3. **Docker Compose**: Create a `docker-compose.yml` file in the root directory.
    
 ### Build and Run the Containers
 
