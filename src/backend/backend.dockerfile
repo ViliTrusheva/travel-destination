@@ -20,4 +20,4 @@ EXPOSE 3000
 # Start the application and run the populate script
 CMD ["node", "server.js"]
 
-# node populate.js && 
+# CMD ["sh", "-c", "node populate.js && node server.js"] -for the first time

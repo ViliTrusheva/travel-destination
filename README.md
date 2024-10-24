@@ -4,6 +4,14 @@
 
 You can view the Figma prototype <a href="https://www.figma.com/design/CcbkZ3X8qdqRTn1q9cL8c9/Travel-Destination-Project?node-id=0-1&t=vSczKiC8VEynPsZE-1" target="_blank">here</a>. 
 
+## Features
+- Backend built with Node.js, Express, and MongoDB.
+- Frontend served using Nginx.
+- Dockerized containers for the frontend, backend, and MongoDB database.
+- Docker Compose for managing multi-container setup.
+- CRUD operations for travel destinations.
+- User authentication for login/signup.
+
 ## API Routes for Testing in Postman
 
 By default, the server listens on **port 3000**.
@@ -61,3 +69,10 @@ If you have any running containers, stop them first:
 
 ``` sh
 docker-compose down
+
+
+
+
+
+
+This `README.md` provides an overview of the project, instructions for setup, and details of the Docker environment.
