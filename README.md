@@ -68,6 +68,7 @@ To verify the installations, run the following commands in the terminal:
 ``` bash
 docker --version
 docker-compose --version
+```
 
 ### Build and Run the Containers
 
@@ -75,31 +76,37 @@ docker-compose --version
 
 ``` bash
 cd path/to/project-root
+```
 
 **Stop Any Running Containers**:
 If you have any running containers, stop them first:
 
 ``` bash
 docker-compose down
+```
 
 **Build Containers**:
 ``` bash
 docker-compose up --build -d
+```
 
 ###Troubleshooting
 If you encounter any issues during the build process on the client side, check the Docker logs for errors:
 ``` bash
 cd path/to/frontend-folder
 docker logs frontend
+```
 
 If you encounter any issues during the build process on the server side, check the Docker logs for errors:
 ``` bash
 cd path/to/backend-folder
 docker logs backend
+```
 
 ###Stopping the Container
 To stop the container:
 ``` bash
 docker-compose down
+```
 
 This `README.md` provides an overview of the project, instructions for setup, and details of the Docker environment.
