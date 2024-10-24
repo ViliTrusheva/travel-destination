@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:18
+FROM node:18-alpine
 
 # Create and set the working directory
 WORKDIR /app
@@ -18,6 +18,6 @@ EXPOSE 3000
 
 
 # Start the application and run the populate script
-CMD ["sh", "-c", "node server.js"]
+CMD ["node", "server.js"]
 
 # node populate.js && 

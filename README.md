@@ -36,3 +36,28 @@ To perform these actions, you'll need a **Bearer Token**:
 1. Log in using the `/auth/login` endpoint.
 2. Copy the token from the response.
 3. In Postman, go to the **Authorization** tab, select **Bearer Token**, and paste the token.
+
+
+
+## Dockser setup
+
+### Prerequisities
+
+Before you begin, ensure you the following installed 
+
+- [Docker] (https://www.docker.com/get-started)
+- [Docker-Compose] (https://docs.docker.com/compose/install/)
+
+### Step 1
+
+1. **Build and Run the Containers**:
+Open a terminal and navigate to the root directory where the `docker-compose.yml` file is located:
+
+``` sh
+cd path/to/project-root
+
+2. **Stop Any Running Containers**:
+If you have any running containers, stop them first:
+
+``` sh
+docker-compose down
