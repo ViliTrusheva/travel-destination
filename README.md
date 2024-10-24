@@ -47,7 +47,7 @@ To perform these actions, you'll need a **Bearer Token**:
 
 
 
-### Docker setup
+## Docker setup
 
 ## Containerization Process
 
@@ -90,7 +90,7 @@ docker-compose down
 docker-compose up --build -d
 ```
 
-###Troubleshooting
+### Troubleshooting
 If you encounter any issues during the build process on the client side, check the Docker logs for errors:
 ``` bash
 cd path/to/frontend-folder
@@ -103,7 +103,7 @@ cd path/to/backend-folder
 docker logs backend
 ```
 
-###Stopping the Container
+### Stopping the Container
 To stop the container:
 ``` bash
 docker-compose down
