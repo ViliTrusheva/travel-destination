@@ -71,20 +71,20 @@ docker-compose --version
    
 ### Build and Run the Containers
 
-1. **Open a terminal and navigate to the root directory where the `docker-compose.yml` file is located**:
-
+1. **Navigate to the Project Root**:
+   Open a terminal and navigate to the root directory where the `docker-compose.yml` file is located:
 ``` bash
 cd path/to/project-root
 ```
 
 2. **Stop Any Running Containers**:
-If you have any running containers, stop them first:
-
+   If you have any running containers, stop them first:
 ``` bash
 docker-compose down
 ```
 
 3. **Build Containers**:
+   Use the following command to build and start the containers:
 ``` bash
 docker-compose up --build -d
 ```
