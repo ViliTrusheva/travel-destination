@@ -47,7 +47,14 @@ To perform these actions, you'll need a **Bearer Token**:
 
 
 
-## Dockser setup
+### Docker setup
+
+## Containerization Process
+
+1. **Backend**: Create a dockerfile in the backend folder.
+2. **Frontend**: Create a dockerfile in the frontend folder.
+3. **Docker Compose**: Create a docker-compose.yml file in the root directory.
+
 
 ### Prerequisities
 
@@ -56,23 +63,43 @@ Before you begin, ensure you the following installed
 - [Docker] (https://www.docker.com/get-started)
 - [Docker-Compose] (https://docs.docker.com/compose/install/)
 
-### Step 1
+To verify the installations, run the following commands in the terminal:
 
-1. **Build and Run the Containers**:
-Open a terminal and navigate to the root directory where the `docker-compose.yml` file is located:
+``` bash
+docker --version
+docker-compose --version
 
-``` sh
+### Build and Run the Containers
+
+**Open a terminal and navigate to the root directory where the `docker-compose.yml` file is located**:
+
+``` bash
 cd path/to/project-root
 
-2. **Stop Any Running Containers**:
+**Stop Any Running Containers**:
 If you have any running containers, stop them first:
 
-``` sh
+``` bash
 docker-compose down
 
+**Build Containers**:
+``` bash
+docker-compose up --build -d
 
+###Troubleshooting
+If you encounter any issues during the build process on the client side, check the Docker logs for errors:
+``` bash
+cd path/to/frontend-folder
+docker logs frontend
 
+If you encounter any issues during the build process on the server side, check the Docker logs for errors:
+``` bash
+cd path/to/backend-folder
+docker logs backend
 
-
+###Stopping the Container
+To stop the container:
+``` bash
+docker-compose down
 
 This `README.md` provides an overview of the project, instructions for setup, and details of the Docker environment.
