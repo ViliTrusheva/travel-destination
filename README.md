@@ -1,4 +1,4 @@
-## Travel Destination project
+# Travel Destination project
 
 ## Figma Design
 
@@ -49,13 +49,6 @@ To perform these actions, you'll need a **Bearer Token**:
 
 ## Docker setup
 
-## Containerization Process
-
-1. **Backend**: Create a dockerfile in the backend folder.
-2. **Frontend**: Create a dockerfile in the frontend folder.
-3. **Docker Compose**: Create a docker-compose.yml file in the root directory.
-
-
 ### Prerequisities
 
 Before you begin, ensure you the following installed 
@@ -70,6 +63,12 @@ docker --version
 docker-compose --version
 ```
 
+## Containerization Process
+
+1. **Backend**: Create a dockerfile in the backend folder.
+2. **Frontend**: Create a dockerfile in the frontend folder.
+3. **Docker Compose**: Create a docker-compose.yml file in the root directory.
+   
 ### Build and Run the Containers
 
 **Open a terminal and navigate to the root directory where the `docker-compose.yml` file is located**:
